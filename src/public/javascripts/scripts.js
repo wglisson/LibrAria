@@ -11,3 +11,18 @@ $(document).ready(function() {
         });
     });
 });
+
+function spotifyPlaySong() {
+	$.ajax({
+		type: 'PUT',
+		url: 'https://api.spotify.com/v1/me/player/play'
+	})
+}
+
+$(document).ready(function() {
+	$('.playSpotify').each(function(i) {
+		$(this).click(function() {
+				spotifyPlaySong();
+		});
+	});
+});
