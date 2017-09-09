@@ -23,8 +23,12 @@ router.get('/users', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.get('/', function(req, res, next) {
+router.get('/spotify', function(req, res, next) {
     res.render('spotify', { title: 'Express' });
+});
+
+router.get('/library', function(req, res, next) {
+  res.render('library', { title: 'Express' });
 });
 
 module.exports = router;
