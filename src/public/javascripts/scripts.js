@@ -1,0 +1,13 @@
+function loadSong(videoID) {
+    if (player) {
+        player.loadVideoById(videoID, 0, "large");
+    }
+}
+
+$(document).ready(function() {
+    $('.youtubeSong').each(function(i) {
+        $(this).click(function() {
+            loadSong($(this).attr("songID"));
+        });
+    });
+});
