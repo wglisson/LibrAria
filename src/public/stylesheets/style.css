@@ -21,4 +21,7 @@ a {
     #login #signinModal button {
       cursor: pointer; }
 
+#youtube_player {
+  display: none; }
+
 /*# sourceMappingURL=style.css.map */
