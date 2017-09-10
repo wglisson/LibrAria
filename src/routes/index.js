@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var database = require('../server/database.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -11,10 +12,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  if (req.params.inputEmail) {
-    res.render('index', { title: 'Express' });
-  } else {
-    res.render('login');
+  if (req.body) {
+    database.addSongEntry(req.body, function(){});
   }
 });
 
