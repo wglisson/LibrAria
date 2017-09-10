@@ -1,6 +1,6 @@
 <div class="container">
     <div class="col-md-12">
-        <div id="youtube_player"></div>
+        <div id="youtubePlayer"></div>
         <script>
             // 2. This code loads the IFrame Player API code asynchronously.
             var tag = document.createElement('script');
@@ -12,7 +12,7 @@
             //    after the API code downloads.
             var player;
             function onYouTubeIframeAPIReady() {
-                player = new YT.Player('youtube_player', {
+                player = new YT.Player('youtubePlayer', {
                     height: '200',
                     width: '200',
                     videoId: 'uhA55hYnoHw',
@@ -59,6 +59,7 @@
                 <a class="youtubeSong btn btn-primary" songID="YwR1dpsDRdU" href="javascript:void(0);">Load Song</a>
             </div>
         </div>
+        <a id="addButton" href="javascript:void(0);" class="btn btn-primary">Add a song</a>
     </div>
 </div>
 
