@@ -82,12 +82,9 @@ $(document).ready(function() {
 			spotifyPlaySong();
 		});
 	});
-<<<<<<< Updated upstream
 	$('.pauseSpotify').each(function(i) {
 		$(this).click(function() {
 			spotifyPauseSong();
 		});
 	});
-=======
->>>>>>> Stashed changes
 });
