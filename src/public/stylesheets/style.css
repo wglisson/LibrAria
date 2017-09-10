@@ -24,7 +24,7 @@ a {
 #youtube_player {
   display: none; }
 
-.hahaha {
-  color: #00B7FF; }
+.btn-circle {
+  border-radius: 100%; }
 
 /*# sourceMappingURL=style.css.map */
