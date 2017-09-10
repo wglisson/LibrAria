@@ -21,10 +21,13 @@ a {
     #login #signinModal button {
       cursor: pointer; }
 
-#youtube_player {
+#youtubePlayer {
   display: none; }
 
 .btn-circle {
   border-radius: 100%; }
+
+.tag-search {
+  margin-bottom: 20px; }
 
 /*# sourceMappingURL=style.css.map */
