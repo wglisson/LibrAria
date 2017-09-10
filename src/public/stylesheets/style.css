@@ -24,4 +24,7 @@ a {
 #youtube_player {
   display: none; }
 
+.btn-circle {
+  border-radius: 100%; }
+
 /*# sourceMappingURL=style.css.map */
