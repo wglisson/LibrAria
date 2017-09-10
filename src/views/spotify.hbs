@@ -43,6 +43,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script>
+
   (function() {
 
     /**
@@ -69,9 +70,10 @@
 
     var params = getHashParams();
 
-    var access_token = params.access_token,
+        access_token = params.access_token,
         refresh_token = params.refresh_token,
         error = params.error;
+        
 
     if (error) {
       alert('There was an error during the authentication');
