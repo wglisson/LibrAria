@@ -1,52 +1,41 @@
 <div id="library">
     <div class="container">
         <div class="jumbotron">
-  <div class="container text-center">
-    <h1>LibrAria</h1>      
-    <p>Welcome to your personal music library</p>
-  </div>
-</div>
-
-
-
-    <div class="row">
-        {{!-- <div class="col-sm-3">  --}}
-            
+            <div class="container text-center">
+                <h1>Libr<i>Aria</i></h1>      
+                <p>Welcome to your personal music library</p>
+            </div>
+        </div>
+        <div class="row">
             <div class="input-group tag-search">            
                 <input type="text" class="form-control" placeholder="Search tags" name="search">
                 <div class="input-group-btn">
                     <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                 </div>
             </div>
-        {{!-- </div> --}}
-    </div>
-       
+        </div>
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>Name</th>
                     <th>Artist</th>
                     <th>Album</th>
-                    <th>Tag</th>
+                    <th>Source</th>
                 </tr>
             </thead>
             <tbody>
                 {{#each songs}}
-                    <tr>
+                    <tr class="{{this.songPlatform}}Song" songID={{this.songId}}>
                         <td>{{this.songName}}</td>
                         <td>{{this.songArtist}}</td>
                         <td>{{this.songAlbum}}</td>
-                        <td>{{this.songTags}}</td>
+                        <td>{{this.songPlatform}}</td>
                     </tr>
                 {{/each}}
             </tbody>
         </table>
-
-
-  <button onclick="document.getElementById('id01').style.display='block'" 
-  class="w3-button w3-black w3-large">Add Song</button>
-
-  <div id="id01" class="w3-modal w3-animate-opacity">
+        {{!-- <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black w3-large">Add Song</button> --}}
+  {{!-- <div id="id01" class="w3-modal w3-animate-opacity">
     <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
 
       <div class="w3-center"><br>
@@ -78,28 +67,127 @@
       </div>
 
     </div>
-  </div>
-
-
-
-
-
+  </div> --}}
   
-        <div style="position:absolute; bottom:45px;width:100%">
-        <button type="button" class="btn btn-info">
-             <span class="glyphicon glyphicon-play"></span>Play
-             </button>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Add Song
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="inputSongURL">Song URL (YouTube or Spotify)</label>
+                            <input type="url" class="form-control" id="inputSongURL" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputSongName">Song Name</label>
+                            <input type="text" class="form-control" id="inputSongName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputSongArtist">Artist</label>
+                            <input type="text" class="form-control" id="inputSongArtist">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputSongAlbum">Album</label>
+                            <input type="text" class="form-control" id="inputSongAlbum">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" id="cancelModal" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary" id="addSongModal" onclick="addSong()">Add Song</button>
+                    </div>
+                </div>
+            </div>
         </div>
-       <div style="position:absolute; bottom:0px;width:90%">
-       <div class="progress">
-           
-    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-      <span class="sr-only">70% Complete</span>
+
+        <div style="position:absolute; bottom:45px;width:100%">
+            <button type="button" class="btn btn-secondary" id="playButton">
+                <span class="glyphicon glyphicon-play"></span>Play
+            </button>
+            <button type="button" class="btn btn-secondary" id="pauseButton">
+                <span class="glyphicon glyphicon-play"></span>Pause
+            </button>
+        </div>
+        <div style="position:absolute; bottom:0px;width:1140px">
+            <div class="progress">
+                <div id="songProgress" class="progress-bar" role="progressbar" style="width:70%"></div>
+            </div>
+        </div>
     </div>
-    </div>
-    </div>
-  </div>
-    
-   
+        <div id="youtubePlayer"></div>
+        <script>
+            // 2. This code loads the IFrame Player API code asynchronously.
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+            // 3. This function creates an <iframe> (and YouTube player)
+            //    after the API code downloads.
+            var player;
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player('youtubePlayer', {
+                    height: '200',
+                    width: '200',
+                    videoId: 'uhA55hYnoHw',
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+            }
+
+            // 4. The API will call this function when the video player is ready.
+            function onPlayerReady(event) {
+                $(function() {
+                     setInterval(updateProgressBar, 100);
+                });
+                songDuration = player.getDuration();
+            }
+
+            // 5. The API calls this function when the player's state changes.
+            //    The function indicates that when playing a video (state=1),
+            //    the player should play for six seconds and then stop.
+            function onPlayerStateChange(event) {
+                songDuration = player.getDuration();
+            }
+            function startVideo() {
+                player.playVideo();
+            }
+            function pauseVideo() {
+                player.pauseVideo();
+            }
+            function stopVideo() {
+                player.stopVideo();
+            }
+        </script>
+        <div id="spotifyPlayer">
+        	<script>
+        		var SpotifyWebApi = require('spotify-web-api-node');
+				var clientId = 'b56396e79c604c649633d03bb032c421';
+				var clientsecret = 'eeaf9e7120e24ac397d37e59b8042403';
+
+				var spotifyApi = new SpotifyWebApi({
+				  clientId : clientId,
+				  clientSecret : clientsecret,
+				});
+
+				// Get an access token and 'save' it using a setter
+				spotifyApi.clientCredentialsGrant().then(function(data) {
+				    spotifyApi.setAccessToken(data.body['access_token']);
+				}, function(err) {
+				    console.log('Something went wrong!', err);
+				});
+        	</script>
+        </div>
 </div>
         

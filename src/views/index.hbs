@@ -64,11 +64,8 @@
         </div>
         <a id="addButton" href="javascript:void(0);" class="btn btn-primary">Add a song</a>
     </div>
-</div>
-
-<div class="container">
     <div class="col-md-12">
-        <div id="spotify player"></div>
+        <div id="spotifyPlayer">
         	<script>
         		var SpotifyWebApi = require('spotify-web-api-node');
 				var clientId = 'b56396e79c604c649633d03bb032c421';
@@ -80,15 +77,14 @@
 				});
 
 				// Get an access token and 'save' it using a setter
-				spotifyApi.clientCredentialsGrant()
-				  .then(function(data) {
+				spotifyApi.clientCredentialsGrant().then(function(data) {
 				    spotifyApi.setAccessToken(data.body['access_token']);
-				  }, function(err) {
+				}, function(err) {
 				    console.log('Something went wrong!', err);
-				  });
+				});
         	</script>
         </div>
-        	<a class = "playSpotify btn btn-primary">Play Spotify</a>
-        	<a class = "pauseSpotify btn btn-primary">Pause Spotify</a>
+        <a class = "playSpotify btn btn-primary">Play Spotify</a>
+        <a class = "pauseSpotify btn btn-primary">Pause Spotify</a>
     </div>
 </div>

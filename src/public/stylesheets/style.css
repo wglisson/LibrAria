@@ -24,6 +24,9 @@ a {
 #youtubePlayer {
   display: none; }
 
+.table > tbody tr.YouTubeSong, .table > tbody tr.SpotifySong {
+  cursor: pointer; }
+
 .btn-circle {
   border-radius: 100%; }
 

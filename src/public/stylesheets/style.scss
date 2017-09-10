@@ -31,6 +31,12 @@ a {
     display: none;
 }
 
+.table > tbody {
+    tr.YouTubeSong, tr.SpotifySong {
+        cursor: pointer;
+    }
+}
+
 .btn-circle {
     border-radius: 100%;
 }

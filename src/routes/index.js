@@ -14,6 +14,9 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   if (req.body) {
     database.addSongEntry(req.body, function(){});
+    res.end();
+  } else {
+    res.end();
   }
 });
 
