@@ -30,7 +30,7 @@ module.exports = {
     },
 
     getSongsByUser: function(userId, callback) {
-        db.collection('songs').find({'userId': userId}).toArray(function (err, docs) {
+        db.collection('songs').find({"userId": userId}).toArray(function (err, docs) {
             assert.equal(err, null);
             callback(docs);
         });

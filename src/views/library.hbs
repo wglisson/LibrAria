@@ -22,21 +22,23 @@
     </div>
        
         <table class="table table-hover">
-            <thread>
+            <thead>
                 <tr>
                     <th>Name</th>
                     <th>Artist</th>
                     <th>Album</th>
                     <th>Tag</th>
                 </tr>
-            </thread>
+            </thead>
             <tbody>
-                <tr>
-                    <td>Look What You Made Me Do</td>
-                    <td>Taylor Swift</td>
-                    <td>Reputation</td>
-                    <td>Pop</td>
-                </tr>
+                {{#each songs}}
+                    <tr>
+                        <td>{{this.songName}}</td>
+                        <td>{{this.songArtist}}</td>
+                        <td>{{this.songAlbum}}</td>
+                        <td>{{this.songTags}}</td>
+                    </tr>
+                {{/each}}
             </tbody>
         </table>
 

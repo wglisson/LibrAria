@@ -7,6 +7,7 @@ function loadSong(videoID) {
         player.loadVideoById(videoID, 0, "large");
     }
 }
+
 function addSong() {
     $.ajax({
         method: "POST",
@@ -81,9 +82,12 @@ $(document).ready(function() {
 			spotifyPlaySong();
 		});
 	});
+<<<<<<< Updated upstream
 	$('.pauseSpotify').each(function(i) {
 		$(this).click(function() {
 			spotifyPauseSong();
 		});
 	});
+=======
+>>>>>>> Stashed changes
 });

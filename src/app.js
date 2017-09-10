@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var sassMiddleware = require('node-sass-middleware');
 var querystring = require('querystring');
+var exphbs = require("express-handlebars");
 
 var index = require('./routes/index');
 
@@ -144,6 +145,13 @@ app.get('/refresh_token', function(req, res) {
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+app.engine("hbs", exphbs({
+  defaultLayout: "layout",
+  extname: ".hbs",
+  helpers: require("./public/javascripts/helpers.js").helpers, // same file that gets used on our client
+  partialsDir: "views/", // same as default, I just like to be explicit
+  layoutsDir: "views/" // same as default, I just like to be explicit
+}));
 app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public

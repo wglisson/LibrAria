@@ -27,7 +27,14 @@ router.get('/spotify', function(req, res, next) {
 });
 
 router.get('/library', function(req, res, next) {
-  res.render('library', { title: 'Express' });
+  var userSongs;
+  database.getSongsByUser("1", function(songList) {
+    userSongs = songList;
+    res.render('library', {
+      title: 'LibrAria',
+      songs: userSongs
+    });
+  });
 });
 
 module.exports = router;
