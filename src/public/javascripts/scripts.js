@@ -1,4 +1,6 @@
-var access_token = 'BQAsH0dnWYyiUuc-6AjVg-baj2aLcUm8gAtHC24Jvtl88LiB6xOd5xZQrvz-Ky3v8eqIYWZIyt2XlRbUepqwwpGknBVbVUmBa9CsbAlif4VLpi78yi5nQG_ZzEqrbJpUSIXuv1cu3_1xRtHJqA';
+//hardcoded for now
+//obtained from postman
+var access_token = 'BQDBeEkjXT5d1hK5rEPJPQ4lhK-r0hpD28vJKNCSK1469VypE7vlOEqiEDQb3nmpBzJhqLsAezJmJTXYuM8TjJd8dYRFrP1xodwKpOURRjSPtjTgZJw45HIcr8BZklfo1ioliLzKadB48FEGSw';
 
 function loadSong(videoID) {
     if (player) {
@@ -58,6 +60,11 @@ function getSpotifyPlaylists() {
 			'Authorization': 'Bearer ' + access_token
 		}
 	})
+}
+
+//parses a Spotify link as a string to a track into a spotify URI
+function spotifyLinkToURI(link) {
+	return "spotify:track:" + link.substr(31);
 }
 
 $(document).ready(function() {
